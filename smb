@@ -1,0 +1,21 @@
+mkdir /opt/share
+chmod 777 /opt/share -R
+vim /etc/samba/smb.conf
+
+https://github.com/p0ch3mu/super/blob/47056b4dd8769b4fef36aa20a5415b8127738f57/img/image.png
+
+systemctl enable --now smb
+firewall-cmd --add-service=samba --permanent
+vim /etc/selinux/config
+reboot
+
+----------------Client-Linux-------------------
+apt install cifs-utils
+/etc/fstab
+//172.20.0.200/Share  /mnt/adminshare cifs  username=none,password=none 0 0
+mkdir /mnt/adminshare
+mount -a
+df -h
+
+if needs passw - change /etc/fstab
+
