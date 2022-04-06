@@ -1,0 +1,8 @@
+----------------Ca-win----------------------
+https://github.com/p0ch3mu/super/blob/main/img/smb-win-client.png [0-9]
+scp C:\Root.cer root@172.20.2.100:/root/
+
+cp Root.cer /usr/share/ca-certificates/Root.crt
+cp Root.cer /usr/local/share/ca-certificates/Root.crt
+cp Root.cer /etc/ssl/certs/Root.crt
+update-ca-certificates
