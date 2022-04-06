@@ -1,0 +1,6 @@
+vim /etc/gre.up//////////
+
+chmod +x /etc/gre.up
+
+vim /etc/fstab
+  @reboot root /etc/gre.up
