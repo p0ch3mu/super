@@ -1,0 +1,4 @@
+yum install haproxy
+cd /etc/haproxy
+rm -rf haproxy.cfg
+vim haproxy.cfg
