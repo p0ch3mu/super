@@ -1,4 +1,8 @@
-vim /etc/gre.up//////////
+vim /etc/gre.up/
+
+ip tunnel add gre1 mode gre local 20.20.20.100 remote 10.10.10.1 ttl 255
+ip addr add 10.5.5.2/30 dev gre1
+ip link set gre1 up
 
 chmod +x /etc/gre.up
 
