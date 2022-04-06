@@ -1,0 +1,34 @@
+vim /etc/bind/named.conf.options
+forwarders {
+      10.10.10.10;
+};
+
+dnssec-validation no;
+recursion yes;
+
+listen-on { any; };
+allow-query { any; };
+
+};
+
+vim /etc/bind/named.conf.default-zones
+zone "." {
+    type hint;
+    file "/usr/share/dns/root.hints";
+};
+
+zone "skill39.wsr" {
+     type master;
+     file "/opt/dns/skill39";
+};
+zone "16.172.in-addr.arpa" {
+     type master;
+     file "/opt/dns/172";
+};
+
+cp db.local /opt/dns/skill39
+cp db.local /opt/dns/172
+
+https://github.com/p0ch3mu/super/blob/main/img/dns1.png
+https://github.com/p0ch3mu/super/blob/main/img/dns2.png
+
