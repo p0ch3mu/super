@@ -1,0 +1,29 @@
+vim /etc/dhcp
+option domain-name "skill39.wsr"
+option domain-name-servers 172.16.20.10; (in future dns server)
+default-lease-time 600;
+max-lease-time 7200;
+ddns-update-style interim;
+ddns-updates on;
+zone skill39.wsr {
+      primary 172.16.20.10;
+}
+zone 16.172.in-addr.arpa {
+      primary 172.16.20.10;
+}
+subnet 172.16.100.0 netmask 255.255.255.0 {
+      range 172.16.100.0 172.16.100.75;
+      option routers 172.16.100.1;
+}
+subnet 172.16.200.0 netmask 255.255.255.0 {
+      range 172.16.100.0 172.16.100.75;
+      option routers 172.16.200.1;
+}
+subnet 172.16.50.0 netmask 255.255.255.252 {}
+host L-CLI-B {
+       hardware ethernet <MAC-int>
+       fixed-address 172.16.200.61;
+            option routers 172.16.200.1;
+}
+
+vim /etc/default/isc-dhcp-server (interfaces for dhcp)
