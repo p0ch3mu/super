@@ -1,0 +1,6 @@
+conf t
+router ospf
+network x.x.x.x/x area 0
+do sh ip ospf nei
+
+(possible trouble - broadcast network type)
