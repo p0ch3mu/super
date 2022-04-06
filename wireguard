@@ -1,0 +1,35 @@
+yum install epel-release elrepo-release
+yum install kmod-wireguard wireguard-tools
+
+/etc/wireguard >> vim wg0.conf
+
+wg genkey | tee server_private_key | wg pubkey > server_public_key
+wg genkey | tee client_private_key | wg pubkey > client_public_key
+
+----------------Server------------------
+[Interface]
+Address = 10.5.5.1/32
+SaveConfig = False
+ListenPort = 51820
+PrivateKey = <server-private-key> (cat <server-private-key> >> wg0.conf)
+
+[Peer]
+PublicKey = <client-public-key>
+AllowedIPs = 10.5.5.2/32
+-----------------------------------------
+
+----------------Client-------------------
+[Interface]
+Address = 10.5.5.2/32
+PrivateKey = <client-private-key> (cat <client-private-key> >> wg0.conf)
+
+[Peer]
+PublicKey = <server-public-key>
+Endpoint = 200.100.100.100:51820
+AllowedIPs = 10.5.5.2/32
+PersistentKeepalive = 25
+-----------------------------------------
+
+systemctl enable wg-quick@wg0
+wg-quick up wg0
+
