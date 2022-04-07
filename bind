@@ -20,10 +20,13 @@ zone "." {
 zone "skill39.wsr" {
      type master;
      file "/opt/dns/skill39";
+     allow-update { any; };
 };
 zone "16.172.in-addr.arpa" {
      type master;
      file "/opt/dns/172";
+     allow-update { any; };
+     allow-transfer { any; };
 };
 
 cp db.local /opt/dns/skill39
