@@ -1,0 +1,44 @@
+yum install openssl
+apt-get install openssl
+
+Для CentOS / Fedora / RHEL
+#  /usr/share/ssl/misc/CA.pl -newca
+Ubuntu / Debian
+# /usr/lib/ssl/misc/CA.pl -newca
+
+./CA.pl -newreq-nodes
+./CA.pl -sign
+openssl dhparam -out dh2048.pem 2048
+
+---------CLIENT----------
+cp /usr/share/doc/openvpn-*/sample/sample-config-files/client.conf /etc/openvpn/client/
+
+remote 10.116.0.51 1194
+ca ca.crt
+cert client.crt
+key client.key
+
+Убрать 
+Easy rsa
+tls
+cipher
+
+Добавить 
+comp-lzo
+
+cp /root/cacert.pem /etc/openvpn/ca.crt
+cp /root/newcert.pem /etc/openvpn/client.crt
+cp /root/newkey.pem /etc/openvpn/client.key
+
+----------SERVER----------
+cp /usr/share/doc/openvpn-*/sample/sample-config-files/server.conf /etc/openvpn/server/
+local 10.116.0.51
+port 1194
+proto udp
+dev tun
+server 192.168.100.0 255.255.255.0
+push "route 10.116.0.0 255.252.0.0"
+persist-key
+persist-tun
+log /var/log/openvpn.log
+log-append /var/log/openvpn.log
