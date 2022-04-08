@@ -1,0 +1,29 @@
+openssl.cnf
+mkdir /etc/ca
+./CA.pl -newca
+./CA.pl -newreq-nodes
+./CA.pl -sign
+cp newkey.pem /root/www.key
+
+cd /opt/Dockerfile
+cp /root/www* ./
+ls
+vim nginx.conf
+    server {
+        listen 443;
+        server_name www.champ.first;
+        ssl_certificate /var/www.pem;
+        ssl_certificate_key /var/www.key;
+        location / {
+            root /var/;
+            index index.html;
+        }
+    }
+    
+DOCKERFILE
+FROM nginx:latest
+COPY ./index.html /var/
+COPY ./nginx.conf /etc/nginx/conf.d/nginx.conf
+COPY ./www.pem /var/
+COPY ./www.key /var/
+EXPOSE 443
