@@ -42,3 +42,5 @@ persist-key
 persist-tun
 log /var/log/openvpn.log
 log-append /var/log/openvpn.log
+
+disable selinux
