@@ -1,0 +1,27 @@
+proxy_cache_path /etc/nginx/cache keys_zone=cache:30m;
+upstream backend{
+      server 192.168.20.10:8088 mak_fails=4 fail_timeout=43s;
+}
+server {
+      listen 20.20.20.100:80;
+      server_name www.skill39.wsr;
+      return 301 https://www.skill39.wsr/$request_url;
+}
+
+server {
+      listen 20.20.20.100:443 ssl;
+      server_name www.skill39.wsr;
+      ssl_certificate /var/www.crt;
+      ssl_certificate_key /var/www.key;
+      
+      location / {
+      proxy_pass http://backend;
+      proxy_cache cache;
+      proxy_cache_valid 40s;
+      }
+      
+      location ~* \.php$ {
+      proxy_cache_bypass $cookie_nocache;
+      proxy_pass http://backend;
+      }
+}
