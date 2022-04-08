@@ -1,0 +1,10 @@
+docker exec -it dazzling_easley /bin/sh
+docker run -d -p 80:8080 web-server
+docker kill dazzling_easley
+docker ps
+
+docker image ls (reponame)
+docker run (reponame)
+
+dockerpull (docwnolad docker)
+yum install docker
