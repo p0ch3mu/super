@@ -1,0 +1,13 @@
+yum install nfs-utils
+systemctl enable --now nfs-utils
+vim /etc/exports
+    /mnt/nfs_share *{rw,sync,no_all_squash,root_squash}
+systemctl restart nfs-server
+
+apt install nfs-common
+/etc/fstab -> 172.20.0.200:/mnt/nfs_share /mnt/nfs_share nfs defaults 0 0
+mkdir /mnt/nfs_share
+mount -a
+vim /etc/exports
+    /mnt/nfs_share *{rw,sync,no_all_squash,root_squash}
+systemctl restart nfs-server
