@@ -1,4 +1,21 @@
-yum install haproxy
+yum install haproxy/apt install haproxy
+
 cd /etc/haproxy
+cp /usr/share/doc/haproxy/transparent_proxy.cfg /etc/haproxy/haproxy.cfg
+
+[defaults]
+  mode http
+  timeouts -> 5s
+[frontend MyFrontend]
+  bind 200.100.200.100:443 ssl crt /etc/ssl/certs/APP.pem
+  default_backend   TransparentBack_http
+  http-request redirect scheme https unless { ssl_fc }
+[backend TransparentBack_http]
+  balance roundrobin
+  server s1 172.20.30.100:80 weight 3
+  server s2 172.20.30.20:80 weight 1
+  
+systemctl restart haproxy
+
 rm -rf haproxy.cfg
 vim haproxy.cfg
