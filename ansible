@@ -1,0 +1,18 @@
+apt install ansible
+mkdir ansible
+
+nano /etc/ssh/sshd_config
+permitrootlogin yes
+systemctl restart sshd
+
+ssh-keygen
+ssh-copy-id root@200.100.200.100
+
+vim inventory
+	200.100.200.100
+	200.100.100.100
+	
+	
+
+
+ansible all -m ping
