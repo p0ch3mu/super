@@ -1,0 +1,24 @@
+apt install nginx
+mkdir /opt/web/
+vim /opt/web/index.html
+
+<!DOCTYPE html>
+<html>
+      ...
+</html>
+
+chmod 777 /opt/web/ -R
+vim /etc/nginx/conf.d/site.conf
+
+server {
+    listen 0.0.0.0:80;
+    location / {
+        root /opt/web/;
+        index index.html;
+    }
+}
+
+nginx -t
+cp /etc/nginx/conf.d/site.conf /etc/nginx/sites-enabled/
+rm -rf /etc/nginx/sites-enabled/default
+systemctl restart nginx
