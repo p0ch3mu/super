@@ -16,3 +16,6 @@ set vpn ipsec site-to-site peer 200.100.100.10 authentication pre=shared-secret 
 
 set vpn ipsec site-to-site peer 200.100.100.10 ike-group IKE1
 set vpn ipsec site-to-site peer 200.100.100.10 default-esp-group ESP1
+
+set vpn ipsec site-to-site peer 200.100.100.10 local-address 200.100.100.200
+set vpn ipsec site-to-site peer 200.100.100.10 tunnel 1 protocol gre
