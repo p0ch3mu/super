@@ -1,0 +1,29 @@
+cfdisk -> gpt -> new -> type -> Linux LVM -> Write
+yum install lvm2
+pvcreate /dev/sdb1
+vgcreate testname /dev/sdb1 /dev/sdc1 /dev/sde1
+lvcreate -L 300m -n Docs testname
+mkfs.ext4 /dev/testname/Docs
+mkdir /mnt/Docs
+mount /dev/testname/Docs /mnt/Docs
+df -h 
+
+fstab
+/dev/testname/Docs  /mnt/Docs ext4  defaults  0 0
+
+pvs
+
+lvcreate -l 20%FREE -n Storage testname
+lvs
+yum install xfsprogs
+mkfs.xfs /dev/testname/Storage
+
+fstab
+/dev/testname/Storage  /mnt/Storage xfs  defaults  0 0
+
+vgextend testname /dev/sde1
+lvextend /dev/testname/Docs /dev/sde1
+umount /dev/mapper/testname-Docs
+e2fsck -f /dev/testname/Docs
+
+xfs_growfs /dev/testname/Storage
