@@ -1,3 +1,4 @@
+docker build -t test
 docker exec -it dazzling_easley /bin/sh
 docker run -d -p 80:8080 web-server
 docker kill dazzling_easley
