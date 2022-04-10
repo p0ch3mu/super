@@ -1,0 +1,13 @@
+table ip nat {
+    chain postrouting {
+        type nat hook postrouting priority 0;
+        ip saddr 172.16.0.0/16 oifname ens160 counter masquerade;
+    }
+    chain prerouting {
+        type nat hook prerouting priority 0;
+        tcp dport 53 dnat 172.16.20.10:53;
+        udp dport 53 dnat 172.16.20.10:53;
+    }
+}
+
+/etc/nftables.conf
