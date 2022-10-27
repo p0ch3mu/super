@@ -1,0 +1,17 @@
+apt install ssh
+systemctl enable ssh
+systemctl start ssh
+
+Конфигурация сервера хранится в файле /etc/ssh/sshd_config
+PermitRootLogin yes
+systemctl restart sshd
+
+Конфигурация клиента хранится в файле /etc/ssh/ssh_config
+systemctl restart ssh
+ssh -v ServerSSH
+
+------Подключение по SSH без ввода пароля-------
+ssh-keygen 
+ssh-copy-id <имя_или_адрес_сервера>
+        или
+ssh-copy-id <имя_пользователя>@<имя_или_адрес_сервера>
