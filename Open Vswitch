@@ -1,1 +1,14 @@
+apt install openvswitch-switch
 
+Добавляем свич
+  ovs-vsctl add-br br-mgmt
+Добавляем интерфейсы 
+  ovs-vsctl add-bond br-mgmt bond0 eth0 eth2
+
+ovs-vsctl show
+ovs-vsctl list-br
+ovs-vsctl list-ports <имя_коммутатора>
+ovs-appctl bond/show
+
+ovs-vsctl del-port  <имя_коммутатора> <имя_порта>
+ovs-vsctl del-br <имя_коммутатора>
