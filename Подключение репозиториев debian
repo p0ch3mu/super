@@ -1,0 +1,3 @@
+apt install debian-archive-keyring dirmngr
+vim /etc/apt/sources.list
+  deb http://deb.debian.org/debian/ stretch main
