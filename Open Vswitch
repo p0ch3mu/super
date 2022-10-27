@@ -12,3 +12,6 @@ ovs-appctl bond/show
 
 ovs-vsctl del-port  <имя_коммутатора> <имя_порта>
 ovs-vsctl del-br <имя_коммутатора>
+
+(Лучше не трогать)
+ovs-vsctl set port bond0 lacp=active
