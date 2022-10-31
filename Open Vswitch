@@ -20,5 +20,5 @@ ovs-vsctl set port bond0 lacp=active
 
 
 
-
+Ещё зздесь
 https://xakep.ru/2017/09/04/open-vswitch/
