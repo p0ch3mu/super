@@ -15,3 +15,10 @@ ovs-vsctl del-br <имя_коммутатора>
 
 (Лучше не трогать)
 ovs-vsctl set port bond0 lacp=active
+
+
+
+
+
+
+https://xakep.ru/2017/09/04/open-vswitch/
